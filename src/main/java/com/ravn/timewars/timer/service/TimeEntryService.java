@@ -144,8 +144,6 @@ public class TimeEntryService {
         // Get TimeEntries by user id
         List<TimeEntry> timeEntries = timeEntryDao.getAllTimeEntriesByUserId(approveTimeEntryRequest.userId());
 
-        log.info("Time entries size: {}", timeEntries.size());
-
         // Change approved status for each time entry
         timeEntries.forEach(timeEntry -> {
             if (approveTimeEntryRequest.approvedStatus() == 1) {
