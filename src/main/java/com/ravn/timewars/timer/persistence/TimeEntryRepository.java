@@ -16,6 +16,8 @@ public interface TimeEntryRepository extends JpaRepository<TimeEntry, Long> {
 
     Page<TimeEntry> findAllByUserId(Long user_id, Pageable pageable);
 
+    List<TimeEntry> findAllByUserId(Long user_id);
+
     @Modifying
     @Query("update TimeEntry t " +
             "set t.endTime = :end_date, t.description = :description, t.isRunning = :is_running, t.duration = :duration, t.updatedAt = :updated_at " +

@@ -4,6 +4,8 @@ import com.ravn.timewars.shared.AbstractAuditingEntity;
 import com.ravn.timewars.user.persistence.Client;
 import com.ravn.timewars.user.persistence.User;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -58,10 +60,15 @@ public class TimeEntry extends AbstractAuditingEntity<Long> {
 
     private Instant deletedAt;
 
+    @Enumerated(EnumType.STRING)
+    private ApproveStatus approveStatus = ApproveStatus.PENDING;
+
+    private Boolean isManual = false;
+
     public TimeEntry() {
     }
 
-    public TimeEntry(Long id, String description, Boolean isBillable, Project project, User user, Client client, Instant startTime, Instant endTime, Integer duration, Boolean isRunning, Instant updatedAt, Instant deletedAt) {
+    public TimeEntry(Long id, String description, Boolean isBillable, Project project, User user, Client client, Instant startTime, Instant endTime, Integer duration, Boolean isRunning, Instant updatedAt, Instant deletedAt, ApproveStatus approveStatus) {
         this.id = id;
         this.description = description;
         this.isBillable = isBillable;
@@ -74,5 +81,6 @@ public class TimeEntry extends AbstractAuditingEntity<Long> {
         this.isRunning = isRunning;
         this.updatedAt = updatedAt;
         this.deletedAt = deletedAt;
+        this.approveStatus = approveStatus;
     }
 }

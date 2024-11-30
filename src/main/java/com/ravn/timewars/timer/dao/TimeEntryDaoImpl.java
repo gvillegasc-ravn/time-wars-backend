@@ -35,6 +35,11 @@ public class TimeEntryDaoImpl implements TimeEntryDao {
     }
 
     @Override
+    public List<TimeEntry> getAllTimeEntriesByUserId(Long userId) {
+        return timeEntryRepository.findAllByUserId(userId);
+    }
+
+    @Override
     public TimeEntry getTimeEntryById(Long timeEntryId) {
         return timeEntryRepository.findById(timeEntryId).orElseThrow(() -> new ResourceNotFoundException("Time entry not found with id: " + timeEntryId));
     }

@@ -2,8 +2,10 @@ package com.ravn.timewars.timer.service;
 
 import com.ravn.timewars.timer.dao.ProjectDao;
 import com.ravn.timewars.timer.dao.TimeEntryDao;
+import com.ravn.timewars.timer.persistence.ApproveStatus;
 import com.ravn.timewars.timer.persistence.Project;
 import com.ravn.timewars.timer.persistence.TimeEntry;
+import com.ravn.timewars.timer.presentation.request.ApprovedStatusRequest;
 import com.ravn.timewars.timer.presentation.request.StartTimerRequest;
 import com.ravn.timewars.timer.presentation.request.StopTimerRequest;
 import com.ravn.timewars.timer.presentation.response.AllTimeEntriesResponse;
@@ -12,14 +14,13 @@ import com.ravn.timewars.user.dao.ClientDao;
 import com.ravn.timewars.user.dao.UserDao;
 import com.ravn.timewars.user.persistence.Client;
 import com.ravn.timewars.user.persistence.User;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.Timestamp;
 import java.time.Duration;
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -120,9 +121,39 @@ public class TimeEntryService {
         // Get project
         Project project = projectDao.getById(timeEntry.getProject().getId());
 
+        // Get user
+        User user = userDao.getById(timeEntry.getUser().getId());
+
         response.setClientName(client.getName());
         response.setProjectName(project.getName());
+        response.setUserId(user.getId());
+        response.setUserName(user.getName());
+        response.setApprovedStatus(timeEntry.getApproveStatus().name());
 
         return response;
+    }
+
+    @Transactional
+    public List<AllTimeEntriesResponse> changeApprovedStatus(@Valid ApprovedStatusRequest approveTimeEntryRequest) {
+        log.info("Changing approved status for time entries from user with id: {}", approveTimeEntryRequest.userId());
+
+        // Get TimeEntries by user id
+        List<TimeEntry> timeEntries = timeEntryDao.getAllTimeEntriesByUserId(approveTimeEntryRequest.userId());
+
+        log.info("Time entries size: {}", timeEntries.size());
+
+        // Change approved status for each time entry
+        timeEntries.forEach(timeEntry -> {
+            if (approveTimeEntryRequest.approvedStatus() == 1) {
+                timeEntry.setApproveStatus(ApproveStatus.APPROVED);
+            } else {
+                timeEntry.setApproveStatus(ApproveStatus.REJECTED);
+            }
+            timeEntryDao.updateTimeEntry(timeEntry);
+        });
+
+        return timeEntries.stream()
+                .map(this::toAllTimeEntriesResponse)
+                .toList();
     }
 }

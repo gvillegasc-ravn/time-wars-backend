@@ -13,4 +13,7 @@ public class AllTimeEntriesResponse {
     private String description;
     private String clientName;
     private String projectName;
+    private Long userId;
+    private String userName;
+    private String approvedStatus;
 }

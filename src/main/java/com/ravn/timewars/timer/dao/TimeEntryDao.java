@@ -15,6 +15,8 @@ public interface TimeEntryDao {
 
     List<TimeEntry> getAllTimeEntries();
 
+    List<TimeEntry> getAllTimeEntriesByUserId(Long userId);
+
     TimeEntry getTimeEntryById(Long timeEntryId);
 
     void updateTimeEntry(TimeEntry timeEntry);
