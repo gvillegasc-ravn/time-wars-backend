@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.29.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1732940645337-1" author="ravn">
+        <createSequence incrementBy="1" sequenceName="client_sequence" startValue="1"/>
+    </changeSet>
+    <changeSet id="1732940645337-2" author="ravn">
+        <createSequence incrementBy="1" sequenceName="project_sequence" startValue="1"/>
+    </changeSet>
+    <changeSet id="1732940645337-3" author="ravn">
+        <createSequence incrementBy="1" sequenceName="time_entry_sequence" startValue="1"/>
+    </changeSet>
+    <changeSet id="1732940645337-4" author="ravn">
+        <createSequence incrementBy="1" sequenceName="user_sequence" startValue="1"/>
+    </changeSet>
+    <changeSet id="1732940645337-5" author="ravn">
+        <createTable tableName="client">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_client"/>
+            </column>
+            <column name="created_date" type="DATETIME"/>
+            <column name="last_modified_date" type="DATETIME"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="is_active" type="BOOLEAN"/>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1732940645337-6" author="ravn">
+        <createTable tableName="project">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_project"/>
+            </column>
+            <column name="created_date" type="DATETIME"/>
+            <column name="last_modified_date" type="DATETIME"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="client_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="billable" type="BOOLEAN"/>
+            <column name="is_default" type="BOOLEAN"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1732940645337-7" author="ravn">
+        <createTable tableName="time_entry">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_time_entry"/>
+            </column>
+            <column name="created_date" type="DATETIME"/>
+            <column name="last_modified_date" type="DATETIME"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="is_billable" type="BOOLEAN"/>
+            <column name="project_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="client_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="start_time" type="DATETIME"/>
+            <column name="end_time" type="DATETIME"/>
+            <column name="duration" type="INT"/>
+            <column name="is_running" type="BOOLEAN"/>
+            <column name="updated_at" type="DATETIME"/>
+            <column name="deleted_at" type="DATETIME"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1732940645337-8" author="ravn">
+        <createTable tableName="user">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_user"/>
+            </column>
+            <column name="created_date" type="DATETIME"/>
+            <column name="last_modified_date" type="DATETIME"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="email" type="VARCHAR(255)"/>
+            <column name="status" type="VARCHAR(255)"/>
+            <column name="cost_rate" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1732940645337-9" author="ravn">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="client" constraintName="FK_CLIENT_ON_USER"
+                                 referencedColumnNames="id" referencedTableName="user"/>
+    </changeSet>
+    <changeSet id="1732940645337-10" author="ravn">
+        <addForeignKeyConstraint baseColumnNames="client_id" baseTableName="project"
+                                 constraintName="FK_PROJECT_ON_CLIENT" referencedColumnNames="id"
+                                 referencedTableName="client"/>
+    </changeSet>
+    <changeSet id="1732940645337-11" author="ravn">
+        <addForeignKeyConstraint baseColumnNames="client_id" baseTableName="time_entry"
+                                 constraintName="FK_TIME_ENTRY_ON_CLIENT" referencedColumnNames="id"
+                                 referencedTableName="client"/>
+    </changeSet>
+    <changeSet id="1732940645337-12" author="ravn">
+        <addForeignKeyConstraint baseColumnNames="project_id" baseTableName="time_entry"
+                                 constraintName="FK_TIME_ENTRY_ON_PROJECT" referencedColumnNames="id"
+                                 referencedTableName="project"/>
+    </changeSet>
+    <changeSet id="1732940645337-13" author="ravn">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="time_entry"
+                                 constraintName="FK_TIME_ENTRY_ON_USER" referencedColumnNames="id"
+                                 referencedTableName="user"/>
+    </changeSet>
+
+</databaseChangeLog>

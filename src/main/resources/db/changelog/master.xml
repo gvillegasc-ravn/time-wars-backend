@@ -12,6 +12,5 @@
     <property name="datetimeType" value="datetime" dbms="postgresql"/>
     <property name="textType" value="text" dbms="postgresql"/>
 
-    <include file="/db/changelog/00000000000001_user.xml" relativeToChangelogFile="false"/>
-    <include file="db/changelog/00000000000002_timer.xml"/>
+    <include file="db/changelog/00000000000001_first_migration.xml"/>
 </databaseChangeLog>
