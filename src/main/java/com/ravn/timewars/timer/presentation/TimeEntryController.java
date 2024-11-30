@@ -4,6 +4,7 @@ import com.ravn.timewars.shared.ResponseHandler;
 import com.ravn.timewars.timer.presentation.request.ApprovedStatusRequest;
 import com.ravn.timewars.timer.presentation.request.StartTimerRequest;
 import com.ravn.timewars.timer.presentation.request.StopTimerRequest;
+import com.ravn.timewars.timer.presentation.request.UpdateTimerRequest;
 import com.ravn.timewars.timer.service.TimeEntryService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -45,5 +46,10 @@ public class TimeEntryController {
     @PutMapping("/change-approved-status")
     public ResponseEntity<Object> approveTimeEntry(@RequestBody @Valid ApprovedStatusRequest approveTimeEntryRequest) {
         return ResponseHandler.generateResponse(HttpStatus.CREATED, timeEntryService.changeApprovedStatus(approveTimeEntryRequest), true);
+    }
+
+    @PutMapping("/update-time-entry/{id}")
+    public ResponseEntity<Object> updateTimeEntry(@PathVariable Long id, @RequestBody UpdateTimerRequest updateTimerRequest) {
+        return ResponseHandler.generateResponse(HttpStatus.CREATED, timeEntryService.updateTimeEntry(id, updateTimerRequest), true);
     }
 }

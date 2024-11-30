@@ -68,7 +68,7 @@ public class TimeEntry extends AbstractAuditingEntity<Long> {
     public TimeEntry() {
     }
 
-    public TimeEntry(Long id, String description, Boolean isBillable, Project project, User user, Client client, Instant startTime, Instant endTime, Integer duration, Boolean isRunning, Instant updatedAt, Instant deletedAt, ApproveStatus approveStatus) {
+    public TimeEntry(Long id, String description, Boolean isBillable, Project project, User user, Client client, Instant startTime, Instant endTime, Integer duration, Boolean isRunning, Instant updatedAt, Instant deletedAt, ApproveStatus approveStatus, Boolean isManual) {
         this.id = id;
         this.description = description;
         this.isBillable = isBillable;
@@ -82,5 +82,6 @@ public class TimeEntry extends AbstractAuditingEntity<Long> {
         this.updatedAt = updatedAt;
         this.deletedAt = deletedAt;
         this.approveStatus = approveStatus;
+        this.isManual = isManual;
     }
 }

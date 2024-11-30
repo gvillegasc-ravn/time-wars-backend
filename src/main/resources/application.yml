@@ -35,12 +35,14 @@ spring:
           provider_disables_autocommit: true
         order_inserts: true
         default_schema: timewars_db
+        format_sql: true
     hibernate:
       ddl-auto: validate
       naming:
         implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
         physical-strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
     open-in-view: false
+    show-sql: true
   liquibase:
     change-log: classpath:db/changelog/master.xml
     default-schema: timewars_db

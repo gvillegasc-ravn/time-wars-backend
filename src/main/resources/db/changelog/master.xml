@@ -14,4 +14,5 @@
 
     <include file="db/changelog/00000000000001_first_migration.xml"/>
     <include file="/db/changelog/00000000000002_adding_approve_status.xml"/>
+    <include file="db/changelog/00000000000002_adding_is_manual.xml"/>
 </databaseChangeLog>

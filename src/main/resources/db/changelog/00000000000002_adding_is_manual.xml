@@ -5,12 +5,9 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.29.xsd"
         objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
-
-    <changeSet id="1732955637055-1"
-               author="ravn">
+    <changeSet id="1732970754974-1" author="andregallegos">
         <addColumn tableName="time_entry">
-            <column name="approve_status"
-                    type="VARCHAR(255)"/>
+            <column name="is_manual" type="BOOLEAN"/>
         </addColumn>
     </changeSet>
 
