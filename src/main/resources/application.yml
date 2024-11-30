@@ -16,6 +16,9 @@ spring:
       auto-commit: false
     driver-class-name: org.postgresql.Driver
     type: com.zaxxer.hikari.HikariDataSource
+    url: ${JDBC_DATABASE_URL}
+    username: ${JDBC_DATABASE_USERNAME}
+    password: ${JDBC_DATABASE_PASSWORD}
   data:
     jpa:
       repositories:
