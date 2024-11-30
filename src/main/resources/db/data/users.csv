@@ -1,0 +1,6 @@
+id,created_date,last_modified_date,name,email,status,cost_rate
+1,"2024-01-01T10:00:00Z","2024-01-01T10:00:00Z",Andre Gallegos,andre.gallegos@ravn.co,ACTIVE,100
+2,"2024-01-01T10:00:00Z","2024-01-01T10:00:00Z",Gerardo Villegas,gerardo.villegas@ravn.co,ACTIVE,150
+3,"2024-01-01T10:00:00Z","2024-01-01T10:00:00Z",Jackeline Quispe,jackeline.quispe@ravn.co,ACTIVE,120
+4,"2024-01-01T10:00:00Z","2024-01-01T10:00:00Z",Joan Leyton,joan.leytons@ravn.co,ACTIVE,180
+5,"2024-01-01T10:00:00Z","2024-01-01T10:00:00Z",Arturo Jara,arturo.jara@ravn.co,ACTIVE,130

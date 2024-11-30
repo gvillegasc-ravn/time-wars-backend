@@ -1,0 +1,6 @@
+id,created_date,last_modified_date, name,client_id,billable,is_default
+1,"2024-01-01T10:00:00Z","2024-01-01T10:00:00Z",Project A,1,true,false
+2,"2024-01-01T10:00:00Z","2024-01-01T10:00:00Z",Project B,2,true,true
+3,"2024-01-01T10:00:00Z","2024-01-01T10:00:00Z",Project C,3,true,true
+4,"2024-01-01T10:00:00Z","2024-01-01T10:00:00Z",Project D,4,true,false
+5,"2024-01-01T10:00:00Z","2024-01-01T10:00:00Z",Project E,5,true,false

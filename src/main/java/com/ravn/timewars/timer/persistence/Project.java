@@ -24,7 +24,7 @@ public class Project extends AbstractAuditingEntity<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "projectSequenceGenerator")
-    @SequenceGenerator(name = "projectSequenceGenerator", sequenceName = "project_sequence", allocationSize = 1, initialValue = 1)
+    @SequenceGenerator(name = "projectSequenceGenerator", sequenceName = "project_sequence", allocationSize = 1, initialValue = 6)
     private Long id;
 
     private String name;

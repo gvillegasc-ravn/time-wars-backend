@@ -1,0 +1,6 @@
+id,created_date,last_modified_date,name,is_active,user_id
+1,"2024-01-01T10:00:00Z","2024-01-01T10:00:00Z",Lucidchart,true,1
+2,"2024-01-01T10:00:00Z","2024-01-01T10:00:00Z",Dogshow,true,2
+3,"2024-01-01T10:00:00Z","2024-01-01T10:00:00Z",Esika,false,3
+4,"2024-01-01T10:00:00Z","2024-01-01T10:00:00Z",SkullCandy,true,4
+5,"2024-01-01T10:00:00Z","2024-01-01T10:00:00Z",Pinterest,true,5

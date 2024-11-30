@@ -23,7 +23,7 @@ public class Client extends AbstractAuditingEntity<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "clientSequenceGenerator")
-    @SequenceGenerator(name = "clientSequenceGenerator", sequenceName = "client_sequence", allocationSize = 1, initialValue = 1)
+    @SequenceGenerator(name = "clientSequenceGenerator", sequenceName = "client_sequence", allocationSize = 1, initialValue = 6)
     private Long id;
 
     private String name;

@@ -110,4 +110,56 @@
                                  referencedTableName="user"/>
     </changeSet>
 
+    <!-- Seed users data from CSV -->
+    <changeSet id="1732940645337-14" author="ravn">
+        <loadData
+                file="classpath:/db/data/users.csv"
+                tableName="user"
+                separator=","
+                encoding="UTF-8">
+            <column name="id" type="numeric"/>
+            <column name="created_date" type="timestamp"/>
+            <column name="last_modified_date" type="timestamp"/>
+            <column name="name" type="string"/>
+            <column name="email" type="string"/>
+            <column name="status" type="string"/>
+            <column name="cost_rate" type="numeric"/>
+        </loadData>
+    </changeSet>
+
+
+    <!-- Seed clients data from CSV -->
+    <changeSet id="1732940645337-15" author="ravn">
+        <loadData
+                file="classpath:/db/data/clients.csv"
+                tableName="client"
+                separator=","
+                encoding="UTF-8">
+            <column name="id" type="numeric"/>
+            <column name="created_date" type="timestamp"/>
+            <column name="last_modified_date" type="timestamp"/>
+            <column name="name" type="string"/>
+            <column name="is_active" type="boolean"/>
+            <column name="user_id" type="numeric"/>
+        </loadData>
+    </changeSet>
+
+
+    <!-- Seed projects data from CSV -->
+    <changeSet id="1732940645337-16" author="ravn">
+        <loadData
+                file="classpath:/db/data/projects.csv"
+                tableName="project"
+                separator=","
+                encoding="UTF-8">
+            <column name="id" type="NUMERIC"/>
+            <column name="created_date" type="timestamp"/>
+            <column name="last_modified_date" type="timestamp"/>
+            <column name="name" type="string"/>
+            <column name="client_id" type="numeric"/>
+            <column name="billable" type="boolean"/>
+            <column name="is_default" type="boolean"/>
+        </loadData>
+    </changeSet>
+
 </databaseChangeLog>

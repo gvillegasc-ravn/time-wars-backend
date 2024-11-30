@@ -27,7 +27,7 @@ public class TimeEntry extends AbstractAuditingEntity<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "timeEntrySequenceGenerator")
-    @SequenceGenerator(name = "timeEntrySequenceGenerator", sequenceName = "timeEntry_sequence", allocationSize = 1, initialValue = 1)
+    @SequenceGenerator(name = "timeEntrySequenceGenerator", sequenceName = "timeEntry_sequence", allocationSize = 1, initialValue = 6)
     private Long id;
 
     private String description;
