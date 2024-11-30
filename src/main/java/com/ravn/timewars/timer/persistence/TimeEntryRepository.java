@@ -1,5 +1,6 @@
 package com.ravn.timewars.timer.persistence;
 
+import com.ravn.timewars.timer.presentation.response.AllTimeEntriesResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -9,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.util.List;
 
 public interface TimeEntryRepository extends JpaRepository<TimeEntry, Long> {
 
@@ -26,5 +28,6 @@ public interface TimeEntryRepository extends JpaRepository<TimeEntry, Long> {
             @Param(value = "duration") Integer duration,
             @Param(value = "updated_at") Instant updatedAt
             );
+
 
 }

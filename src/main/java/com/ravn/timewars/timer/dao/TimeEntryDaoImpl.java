@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import java.time.Instant;
+import java.util.List;
 
 @Repository
 public class TimeEntryDaoImpl implements TimeEntryDao {
@@ -26,6 +27,11 @@ public class TimeEntryDaoImpl implements TimeEntryDao {
     @Override
     public Page<TimeEntry> getAllTimeEntriesByUserId(Long userId, Pageable pageable) {
         return timeEntryRepository.findAllByUserId(userId, pageable);
+    }
+
+    @Override
+    public List<TimeEntry> getAllTimeEntries() {
+        return timeEntryRepository.findAll();
     }
 
     @Override

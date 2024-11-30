@@ -7,6 +7,7 @@ import com.ravn.timewars.timer.service.TimeEntryService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,5 +33,10 @@ public class TimeEntryController {
     @PutMapping("/stop-timer")
     public ResponseEntity<Object> stopTimer(@RequestBody @Valid StopTimerRequest stopTimerRequest) {
         return ResponseHandler.generateResponse(HttpStatus.CREATED, timeEntryService.stopTimer(stopTimerRequest), true);
+    }
+
+    @GetMapping("/get-all")
+    public ResponseEntity<Object> getAllTimeEntries() {
+        return ResponseHandler.generateResponse(HttpStatus.OK, timeEntryService.getAllTimeEntries(), true);
     }
 }

@@ -6,6 +6,7 @@ import com.ravn.timewars.timer.persistence.Project;
 import com.ravn.timewars.timer.persistence.TimeEntry;
 import com.ravn.timewars.timer.presentation.request.StartTimerRequest;
 import com.ravn.timewars.timer.presentation.request.StopTimerRequest;
+import com.ravn.timewars.timer.presentation.response.AllTimeEntriesResponse;
 import com.ravn.timewars.timer.presentation.response.TimeEntryStopResponse;
 import com.ravn.timewars.user.dao.ClientDao;
 import com.ravn.timewars.user.dao.UserDao;
@@ -19,6 +20,7 @@ import java.sql.Timestamp;
 import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @Slf4j
@@ -90,5 +92,37 @@ public class TimeEntryService {
                 .id(timeEntryToUpdate.getId())
                 .description(stopTimerRequest.description())
                 .build();
+    }
+
+    public List<AllTimeEntriesResponse> getAllTimeEntries() {
+        log.info("Getting all time entries");
+
+        List<TimeEntry> timeEntries = timeEntryDao.getAllTimeEntries();
+
+        log.info("Time entries size: {}", timeEntries.size());
+
+        return timeEntries.stream()
+                .map(this::toAllTimeEntriesResponse)
+                .toList();
+    }
+
+    // Mapping method
+    private AllTimeEntriesResponse toAllTimeEntriesResponse(TimeEntry timeEntry) {
+        AllTimeEntriesResponse response = new AllTimeEntriesResponse();
+
+        response.setId(timeEntry.getId());
+        response.setStartTime(timeEntry.getStartTime());
+        response.setEndTime(timeEntry.getEndTime());
+        response.setDescription(timeEntry.getDescription());
+
+        // Get client
+        Client client = clientDao.getById(timeEntry.getClient().getId());
+        // Get project
+        Project project = projectDao.getById(timeEntry.getProject().getId());
+
+        response.setClientName(client.getName());
+        response.setProjectName(project.getName());
+
+        return response;
     }
 }
