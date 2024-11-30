@@ -2,7 +2,7 @@ services:
   postgres:
     image: 'postgres:latest'
     environment:
-      - 'POSTGRES_DB=moviebox'
+      - 'POSTGRES_DB=timewars'
       - 'POSTGRES_PASSWORD=timewars-secret'
       - 'POSTGRES_USER=ravn'
     ports:
